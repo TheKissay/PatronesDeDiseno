@@ -38,7 +38,7 @@ public class Main {
 		CamisetaM camiseta4 = camiseta.clone();
 		CamisetaM camiseta5 = camiseta.clone();
 		
-		
+		//Lo tengo comentado para probar CircuitBreaker.
 		/*Retry
 		
 		Conexion conexion = new Conexion("Login");
