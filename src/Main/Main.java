@@ -1,5 +1,6 @@
 package Main;
 
+import Prototype.CamisetaM;
 import builder.Usuario;
 import builder.UsuarioBuilder;
 import singleton.Singleton;
@@ -9,14 +10,23 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		//Builder
 		Usuario user = new UsuarioBuilder().build("example@gmail.com", "Pepe");
 		System.out.print(user.toString());
 		
 		
-		
+		//Singleton
 		for (int i = 0; i < 2; i++) {
 			checkInstanceSingleton("MiInstancia");
 		}
+		
+		
+		//Prototype
+		CamisetaM camiseta = new CamisetaM("Camiseta larga", "M", "Amarillo");
+		CamisetaM camiseta2 = camiseta.clone();
+		CamisetaM camiseta3 = camiseta.clone();
+		CamisetaM camiseta4 = camiseta.clone();
+		CamisetaM camiseta5 = camiseta.clone();
 
 	}
 	
