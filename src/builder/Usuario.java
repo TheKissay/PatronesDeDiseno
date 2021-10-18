@@ -1,4 +1,4 @@
-package Entity;
+package builder;
 
 public class Usuario {
 	private String email;

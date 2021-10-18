@@ -1,5 +1,5 @@
-package Entity;
-import Entity.Usuario;
+package builder;
+import builder.Usuario;
 
 
 public class UsuarioBuilder {
