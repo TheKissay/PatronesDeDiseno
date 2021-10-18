@@ -8,4 +8,10 @@ public class Usuario {
 		this.email = pEmail;
 		this.nombre = pNombre;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Email:"+this.email+" "+"Nombre:"+this.nombre;
+	}
 }
