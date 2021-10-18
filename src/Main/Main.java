@@ -2,6 +2,8 @@ package Main;
 
 import java.util.Scanner;
 
+import CircuitBreaker.Instalador;
+import CircuitBreaker.InstaladorStatus;
 import Prototype.CamisetaM;
 import builder.Usuario;
 import builder.UsuarioBuilder;
@@ -15,6 +17,8 @@ public class Main {
 		Scanner reader = new Scanner(System.in);
 		String passwordInput = "";
 		Boolean login = false;
+		
+		
 		
 		//Builder
 		Usuario user = new UsuarioBuilder().build("example@gmail.com", "Pepe");
@@ -35,7 +39,7 @@ public class Main {
 		CamisetaM camiseta5 = camiseta.clone();
 		
 		
-		//Retry
+		/*Retry
 		
 		Conexion conexion = new Conexion("Login");
 		
@@ -46,6 +50,37 @@ public class Main {
 			passwordInput = reader.next();
 			checkPassword(passwordInput, conexion, login);
 		}
+		
+		*/
+		
+		//CircuitBreaker
+		
+		//Se crea un instalador con un máximo de 100 fallos.
+		Instalador instalador1 = new Instalador(100.0);
+		Double fails = 0.0;
+		
+		System.out.println("Instalando aplicación...");
+		
+		for (int i=0; i<2; i++) {
+			fails += Math.random() * 100;
+			
+			
+			System.out.println(fails);
+		}
+		
+		if (fails >= instalador1.getNumFallosMax()) {
+			instalador1.setcStatus(InstaladorStatus.CLOSED);
+			
+			System.out.println("Han ocurrido "+fails+" errores, no se ha instalado correctamente.");
+		} else if (fails < instalador1.getNumFallosMax() && fails > 0.0) {
+			instalador1.setcStatus(InstaladorStatus.HALF_OPEN);
+			System.out.println("Han ocurrido "+fails+" errores, funcionará pero con posibles errores.");
+		}else if (fails == 0.0) {
+			instalador1.setcStatus(InstaladorStatus.OPEN);
+			System.out.println("Han ocurrido "+fails+" errores, se ha instalado correctamente");
+		}
+		
+		
 		
 		
 		
